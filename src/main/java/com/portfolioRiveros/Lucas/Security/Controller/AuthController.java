@@ -14,6 +14,7 @@ import com.portfolioRiveros.Lucas.Security.Service.RolService;
 import com.portfolioRiveros.Lucas.Security.Service.UsuarioService;
 import com.portfolioRiveros.Lucas.Security.jwt.JwtProvider;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,10 +33,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- *
- * @author Usuario
- */
 @RestController
 @RequestMapping("/auth")
 @CrossOrigin(origins = {"https://frontend-be271.web.app","http://localhost:4200"})
@@ -66,7 +63,12 @@ public class AuthController {
             nuevoUsuario.getEmail(), passwordEncoder.encode(nuevoUsuario.getPassword()));
         
         Set<Rol> roles = new HashSet<>();
-        roles.add(rolService.getByRolNombre(RolNombre.ROLE_USER).get());
+        Optional<Rol> roleOptional = rolService.getByRolNombre(RolNombre.ROLE_USER);
+        if (!roleOptional.isPresent()) { // But now we're positive the issue is that getByRolNombre is returning a empty Optional
+            System.out.println("ROLE USER DOES NOT EXIST");
+        } else {
+            roles.add(roleOptional.get());
+        }
         
         if(nuevoUsuario.getRoles().contains("admin"))
             roles.add(rolService.getByRolNombre(RolNombre.ROLE_ADMIN).get());

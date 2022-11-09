@@ -24,9 +24,7 @@ public class LucasApplication {
                         .allowedHeaders("*");
             }
         };
-
     }
-
 }
 
 

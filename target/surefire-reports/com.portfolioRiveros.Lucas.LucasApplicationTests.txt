@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.portfolioRiveros.Lucas.LucasApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 37.989 s - in com.portfolioRiveros.Lucas.LucasApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 29.465 s - in com.portfolioRiveros.Lucas.LucasApplicationTests
